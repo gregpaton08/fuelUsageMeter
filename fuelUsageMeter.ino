@@ -26,11 +26,22 @@ void setup() {
   // set BAUD rate
   Serial.begin(38400);
   
+  // Setup display 
+  display.begin();
+  display.clearDisplay();
+  
+  // display "connect OBD"
+  display.setTextSize(2);
+  display.setTextColor(WHITE);
+  display.setCursor(0, 0);
+  display.println("connect");
+  display.println("OBD");
+  display.display();
+  
   // Setup OBD
   obd.init(); 
   
-  // Setup display 
-  display.begin();
+  // display gauge ramp up
   display.clearDisplay();
   for (uint8_t i = 0; i < 64; ++i) {
     display.drawLine(0, 63 - i, 127, 63 - i, 1);
